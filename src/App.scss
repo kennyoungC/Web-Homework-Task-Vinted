@@ -1,0 +1,99 @@
+/* Base style:- desktop-first */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  font-synthesis: none;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  .header-cont {
+    border-bottom: solid 2px #e5e7eb;
+    margin: 24px 0;
+    padding-bottom: 4px;
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+      margin: 1.5rem 0 1rem;
+      text-align: start;
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #666;
+      text-align: start;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+  }
+  .gallery-cont {
+    background-color: #eee;
+    padding: 24px;
+  }
+}
+
+/* Responsive adjustments for smaller screens below */
+
+@media (max-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+
+  .header-cont h2 {
+    font-size: 1.75rem;
+  }
+
+  .header-cont p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-cont h2 {
+    font-size: 1.5rem;
+  }
+
+  .header-cont p {
+    font-size: 0.9rem;
+  }
+}
