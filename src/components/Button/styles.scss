@@ -9,3 +9,12 @@
   background-color: transparent;
   margin-top: 12px;
 }
+.btn_fav.is_fav {
+  background-color: #000;
+  color: red;
+
+  &:hover {
+    background-color: #000;
+    color: red;
+  }
+}

@@ -33,7 +33,12 @@ const useFetchImages = () => {
       if (photo.length === 0) {
         setHasMore(false)
       } else {
-        setData((prevData) => [...prevData, ...photo])
+        const savedFavs = JSON.parse(localStorage.getItem("favorites") || "{}")
+        const imagesWithFav = photo.map((image: IPhoto) => ({
+          ...image,
+          isFav: savedFavs[image.id] || false,
+        }))
+        setData((prevData) => [...prevData, ...imagesWithFav])
       }
       setLoading(false)
     } catch (error) {
