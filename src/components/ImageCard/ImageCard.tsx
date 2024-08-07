@@ -13,6 +13,18 @@ const ImageCard: FC<IImageCard> = ({ data, onToggleFav, favourites }) => {
   const [imageSrc, setImageSrc] = useState("https://via.placeholder.com/300")
   const imageRef = useRef<HTMLImageElement | null>(null)
   const baseImgUrl = `https://live.staticflickr.com/${data.server}/${data.id}_${data.secret}`
+  const isFav = favourites.includes(data.id)
+  const imageSizes = [
+    { suffix: "_s", width: 75 },
+    { suffix: "_q", width: 150 },
+    { suffix: "_t", width: 100 },
+    { suffix: "_m", width: 240 },
+    { suffix: "_n", width: 320 },
+    { suffix: "_w", width: 400 },
+    { suffix: "_z", width: 640 },
+    { suffix: "_c", width: 800 },
+    { suffix: "_b", width: 1024 },
+  ]
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -32,19 +44,9 @@ const ImageCard: FC<IImageCard> = ({ data, onToggleFav, favourites }) => {
     }
   }, [baseImgUrl, data.id, data.secret, data.server])
 
-  const srcSet = `
-  ${`${baseImgUrl}_s.jpg`} 75w,
-  ${`${baseImgUrl}_q.jpg`} 150w,
-  ${`${baseImgUrl}_t.jpg`} 100w,
-  ${`${baseImgUrl}_m.jpg`} 240w,
-  ${`${baseImgUrl}_n.jpg`} 320w,
-  ${`${baseImgUrl}_w.jpg`} 400w,
-  ${`${baseImgUrl}_z.jpg`} 640w,
-  ${`${baseImgUrl}_c.jpg`} 800w,
-  ${`${baseImgUrl}_b.jpg`} 1024w,
-
-
-`
+  const srcSet = imageSizes
+    .map(({ suffix, width }) => `${baseImgUrl}${suffix}.jpg ${width}w`)
+    .join(",\n")
 
   const sizes = `
     (max-width: 600px) 480px,
@@ -70,12 +72,8 @@ const ImageCard: FC<IImageCard> = ({ data, onToggleFav, favourites }) => {
         </div>
 
         <Button
-          className={`${
-            !favourites.includes(data.id) ? "btn_fav" : "btn_fav is_fav"
-          }`}
-          text={`${
-            !favourites.includes(data.id) ? "Favourite" : "Unfavourite"
-          }`}
+          className={`${!isFav ? "btnFav" : "btnFav isFav"}`}
+          text={`${!isFav ? "Favourite" : "Unfavourite"}`}
           onClick={() => {
             onToggleFav(data.id)
           }}

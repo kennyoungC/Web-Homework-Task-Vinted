@@ -5,19 +5,17 @@ import ImageCard from "../ImageCard/ImageCard"
 import "./Gallary.scss"
 import Loading from "../Loading/Loading"
 
-const initialFavorites = localStorage.getItem("favorites")
-  ? JSON.parse(localStorage.getItem("favorites") as string)
-  : []
-
 const Gallery: FC = () => {
   const {
     data = [],
     loading,
-    lastBookElementRef,
+    lastImageElementRef,
     error,
   }: FetchHookData = useFetchImages()
+  const initialFavorites = localStorage.getItem("favorites")
+    ? JSON.parse(localStorage.getItem("favorites") as string)
+    : []
   const [favorites, setFavorites] = useState<string[]>(initialFavorites)
-  console.log(data)
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites))
@@ -46,7 +44,7 @@ const Gallery: FC = () => {
             return (
               <li
                 key={index}
-                ref={data.length === index + 1 ? lastBookElementRef : null}
+                ref={data.length === index + 1 ? lastImageElementRef : null}
               >
                 <ImageCard
                   data={images}

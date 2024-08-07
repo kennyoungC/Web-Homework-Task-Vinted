@@ -10,19 +10,12 @@ export interface IPhoto {
   isfamily: number
   isFav?: boolean
 }
-export interface IData {
-  page: number
-  pages: number
-  perpage: number
-  photo: IPhoto[]
-  total: number
-}
 
 export type FetchHookData = {
   data: IPhoto[]
   loading: boolean
   error: boolean
-  lastBookElementRef: (node: HTMLElement | null) => void
+  lastImageElementRef: (node: HTMLElement | null) => void
 }
 export type State = {
   images: IPhoto[]

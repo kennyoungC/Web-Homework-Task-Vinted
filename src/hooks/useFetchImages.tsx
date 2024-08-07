@@ -47,7 +47,7 @@ const useFetchImages = () => {
   const observer = useRef<IntersectionObserver | null>(null)
   const { page, loading, hasMore, error } = state
 
-  const lastBookElementRef = useCallback(
+  const lastImageElementRef = useCallback(
     (node: HTMLElement | null) => {
       if (loading || !hasMore) return
       if (observer.current) observer.current.disconnect() // Stop observing if loading or no more Images
@@ -90,7 +90,7 @@ const useFetchImages = () => {
     data: state.images,
     loading,
     error,
-    lastBookElementRef,
+    lastImageElementRef,
   }
 }
 

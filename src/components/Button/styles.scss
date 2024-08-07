@@ -1,4 +1,4 @@
-.btn_fav {
+.btnFav {
   border: solid 2px #f3f4f6;
   color: #f3f4f6;
   padding: 12px 24px;
@@ -9,7 +9,7 @@
   background-color: transparent;
   margin-top: 12px;
 }
-.btn_fav.is_fav {
+.btnFav.isFav {
   background-color: #017782;
 
   &:hover {
