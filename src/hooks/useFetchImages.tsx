@@ -1,50 +1,89 @@
-import { useState, useEffect, useRef, useCallback } from "react"
-import { IPhoto } from "../types"
+import { useEffect, useRef, useCallback, useReducer } from "react"
+import { Action, IPhoto } from "../types"
 import { fetchImagesFromAPI } from "../utils/api"
 
+const initialState = {
+  images: [],
+  page: 1,
+  loading: true,
+  error: false,
+  hasMore: true,
+}
+
+interface State {
+  images: IPhoto[]
+  page: number
+  loading: boolean
+  error: boolean
+  hasMore: boolean
+}
+
+const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case "SET_IMAGES":
+      return {
+        ...state,
+        images: action.payload,
+      }
+    case "SET_PAGE":
+      return {
+        ...state,
+        page: action.payload,
+      }
+    case "SET_LOADING":
+      return {
+        ...state,
+        loading: action.payload,
+      }
+    case "SET_ERROR":
+      return {
+        ...state,
+        error: action.payload,
+      }
+    case "SET_HAS_MORE":
+      return {
+        ...state,
+        hasMore: action.payload,
+      }
+    default:
+      return state
+  }
+}
+
 const useFetchImages = () => {
-  const [data, setData] = useState<IPhoto[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<boolean>(false)
-  const [hasMore, setHasMore] = useState<boolean>(true)
-  const [page, setPage] = useState<number>(1)
+  const [state, dispatch] = useReducer(reducer, initialState)
   const observer = useRef<IntersectionObserver | null>(null)
+  const { page, loading, hasMore, error } = state
 
   const lastBookElementRef = useCallback(
     (node: HTMLElement | null) => {
       if (loading || !hasMore) return
-      if (observer.current) observer.current.disconnect()
+      if (observer.current) observer.current.disconnect() // Stop observing if loading or no more posts
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
-          setPage((prevPageNumber) => prevPageNumber + 1)
+          dispatch({ type: "SET_PAGE", payload: page + 1 }) //Trigger loading of new images by changing page number
         }
       })
       if (node) observer.current.observe(node)
     },
-    [loading, hasMore]
+    [loading, hasMore, page]
   )
-
   const fetchData = useCallback(async () => {
-    setLoading(true)
-    setError(false)
+    dispatch({ type: "SET_LOADING", payload: true })
+    dispatch({ type: "SET_ERROR", payload: false })
     try {
-      const photo = await fetchImagesFromAPI(page, 50)
-      console.log(photo)
+      const photo: IPhoto[] = await fetchImagesFromAPI(page, 10)
+
       if (photo.length === 0) {
-        setHasMore(false)
+        dispatch({ type: "SET_HAS_MORE", payload: false })
       } else {
-        const savedFavs = JSON.parse(localStorage.getItem("favorites") || "{}")
-        const imagesWithFav = photo.map((image: IPhoto) => ({
-          ...image,
-          isFav: savedFavs[image.id] || false,
-        }))
-        setData((prevData) => [...prevData, ...imagesWithFav])
+        dispatch({ type: "SET_IMAGES", payload: [...state.images, ...photo] })
       }
-      setLoading(false)
+      dispatch({ type: "SET_LOADING", payload: false })
     } catch (error) {
       if (error) {
         console.log(error)
-        setError(true)
+        dispatch({ type: "SET_ERROR", payload: true })
         return
       }
     }
@@ -56,7 +95,12 @@ const useFetchImages = () => {
     }
   }, [fetchData, hasMore])
 
-  return { data, loading, error, lastBookElementRef }
+  return {
+    data: state.images,
+    loading,
+    error,
+    lastBookElementRef,
+  }
 }
 
 export default useFetchImages

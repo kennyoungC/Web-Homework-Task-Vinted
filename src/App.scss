@@ -39,16 +39,11 @@
       color: #666;
       text-align: start;
       line-height: 1.6;
-      max-width: 600px;
     }
-  }
-  .gallery-cont {
-    background-color: #eee;
-    padding: 24px;
   }
 }
 
-/* Responsive adjustments for smaller screens below */
+/*below are the Responsive styles for smaller screens  */
 
 @media (max-width: 1536px) {
   .container {

@@ -1,15 +1,15 @@
+import { FC, ButtonHTMLAttributes } from "react"
 import "./styles.scss"
 
-const Button = ({
-  onClick,
-  isFav,
-}: {
-  isFav: boolean
-  onClick: () => void
-}) => {
+interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
+  text: string
+}
+
+const Button: FC<IButton> = (props) => {
+  const { text, ...restProps } = props
   return (
-    <button className={`btn_fav ${isFav ? "is_fav" : ""}`} onClick={onClick}>
-      {isFav ? "Unfavourite" : "Favourite❤️"}
+    <button type="button" {...restProps}>
+      {text}
     </button>
   )
 }

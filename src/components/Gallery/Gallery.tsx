@@ -1,35 +1,65 @@
+import { FC, useEffect, useState } from "react"
 import useFetchImages from "../../hooks/useFetchImages"
-import { IPhoto } from "../../types"
+import { FetchHookData, IPhoto } from "../../types"
 import ImageCard from "../ImageCard/ImageCard"
 import "./Gallary.scss"
+import Loading from "../Loading/Loading"
 
-const Gallery = () => {
+const initialFavorites = localStorage.getItem("favorites")
+  ? JSON.parse(localStorage.getItem("favorites") as string)
+  : []
+
+const Gallery: FC = () => {
   const {
     data = [],
     loading,
     lastBookElementRef,
-  }: {
-    data: IPhoto[]
-    loading: boolean
-    error: boolean
-    lastBookElementRef: (node: HTMLElement | null) => void
-  } = useFetchImages()
+    error,
+  }: FetchHookData = useFetchImages()
+  const [favorites, setFavorites] = useState<string[]>(initialFavorites)
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites))
+  }, [favorites])
+
+  const handleFavourites = (id: string) => {
+    setFavorites((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((favId) => favId !== id)
+      } else {
+        return [...prev, id]
+      }
+    })
+  }
 
   return (
-    <ul role="list" className="gallery">
-      {data.map((images: IPhoto, index: number) => {
-        return (
-          <li
-            key={index}
-            ref={data.length === index + 1 ? lastBookElementRef : null}
-          >
-            <ImageCard data={images} />
-          </li>
-        )
-      })}
-      {loading && <p>Loading...</p>}
-      {/* {error && loading === false && <p>Error</p>} */}
-    </ul>
+    <div>
+      <h3>
+        {favorites.length
+          ? `You have ${favorites.length} favourites`
+          : "No favourites yet"}
+      </h3>
+      <div className="gallery-cont">
+        <ul role="list">
+          {data.map((images: IPhoto, index: number) => {
+            return (
+              <li
+                key={index}
+                ref={data.length === index + 1 ? lastBookElementRef : null}
+              >
+                <ImageCard
+                  data={images}
+                  favourites={favorites}
+                  onToggleFav={handleFavourites}
+                />
+              </li>
+            )
+          })}
+          <li className="loading-cont"> {loading && <Loading />}</li>
+          {error && <p>Error</p>}
+        </ul>
+      </div>
+    </div>
   )
 }
 
