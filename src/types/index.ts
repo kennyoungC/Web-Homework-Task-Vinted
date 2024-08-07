@@ -24,6 +24,13 @@ export type FetchHookData = {
   error: boolean
   lastBookElementRef: (node: HTMLElement | null) => void
 }
+export type State = {
+  images: IPhoto[]
+  page: number
+  loading: boolean
+  error: boolean
+  hasMore: boolean
+}
 
 export type Action =
   | { type: "SET_IMAGES"; payload: IPhoto[] }

@@ -64,9 +64,9 @@ const ImageCard: FC<IImageCard> = ({ data, onToggleFav, favourites }) => {
       />
       <div className="card-content">
         <div>
-          <h3>Walter Dog</h3>
+          <h3>{data.title ? data.title : "Walter Dog"}</h3>
           <hr />
-          <p>Brad Nickerson</p>
+          <p>{data.owner}</p>
         </div>
 
         <Button

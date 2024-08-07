@@ -17,6 +17,7 @@ const Gallery: FC = () => {
     error,
   }: FetchHookData = useFetchImages()
   const [favorites, setFavorites] = useState<string[]>(initialFavorites)
+  console.log(data)
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites))

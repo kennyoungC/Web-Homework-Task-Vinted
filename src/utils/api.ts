@@ -6,7 +6,7 @@ export const fetchImagesFromAPI = async (page: number, limit: number) => {
       }&per_page=${limit}&page=${page}&format=json&nojsoncallback=1`
     )
     if (!response.ok) {
-      throw new Error("Network response was not ok")
+      throw new Error(`Error: ${response.status} ${response.statusText}`)
     }
     const images = await response.json()
 

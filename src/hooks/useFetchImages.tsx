@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback, useReducer } from "react"
-import { Action, IPhoto } from "../types"
+import { Action, IPhoto, State } from "../types"
 import { fetchImagesFromAPI } from "../utils/api"
 
 const initialState = {
@@ -8,14 +8,6 @@ const initialState = {
   loading: true,
   error: false,
   hasMore: true,
-}
-
-interface State {
-  images: IPhoto[]
-  page: number
-  loading: boolean
-  error: boolean
-  hasMore: boolean
 }
 
 const reducer = (state: State, action: Action): State => {
@@ -58,7 +50,7 @@ const useFetchImages = () => {
   const lastBookElementRef = useCallback(
     (node: HTMLElement | null) => {
       if (loading || !hasMore) return
-      if (observer.current) observer.current.disconnect() // Stop observing if loading or no more posts
+      if (observer.current) observer.current.disconnect() // Stop observing if loading or no more Images
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
           dispatch({ type: "SET_PAGE", payload: page + 1 }) //Trigger loading of new images by changing page number
@@ -82,7 +74,6 @@ const useFetchImages = () => {
       dispatch({ type: "SET_LOADING", payload: false })
     } catch (error) {
       if (error) {
-        console.log(error)
         dispatch({ type: "SET_ERROR", payload: true })
         return
       }
