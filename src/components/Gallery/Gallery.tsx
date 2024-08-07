@@ -55,9 +55,9 @@ const Gallery: FC = () => {
               </li>
             )
           })}
-          <li className="loading-cont"> {loading && <Loading />}</li>
-          {error && <p>Error</p>}
         </ul>
+        <div className="loading-cont"> {loading && <Loading />}</div>
+        {error && <p>Error</p>}
       </div>
     </div>
   )
