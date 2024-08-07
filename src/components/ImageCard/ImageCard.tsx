@@ -74,7 +74,7 @@ const ImageCard: FC<IImageCard> = ({ data, onToggleFav, favourites }) => {
             !favourites.includes(data.id) ? "btn_fav" : "btn_fav is_fav"
           }`}
           text={`${
-            !favourites.includes(data.id) ? "Favourite❤️" : "Unfavourite🤍"
+            !favourites.includes(data.id) ? "Favourite" : "Unfavourite"
           }`}
           onClick={() => {
             onToggleFav(data.id)

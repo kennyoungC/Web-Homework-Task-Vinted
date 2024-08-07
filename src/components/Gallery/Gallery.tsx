@@ -33,13 +33,13 @@ const Gallery: FC = () => {
   }
 
   return (
-    <div>
-      <h3>
+    <div className="gallery">
+      <h3 className="fav-title">
         {favorites.length
           ? `You have ${favorites.length} favourites`
           : "No favourites yet"}
       </h3>
-      <div className="gallery-cont">
+      <div className="gallery-image-cont">
         <ul role="list">
           {data.map((images: IPhoto, index: number) => {
             return (
