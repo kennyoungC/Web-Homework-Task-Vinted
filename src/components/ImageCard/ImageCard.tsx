@@ -20,23 +20,31 @@ const ImageCard: FC<IImageCard> = ({ data, onToggleFav, favourites }) => {
     { suffix: "_t", width: 100 },
     { suffix: "_m", width: 240 },
     { suffix: "_n", width: 320 },
-    { suffix: "_w", width: 400 },
-    { suffix: "_z", width: 640 },
-    { suffix: "_c", width: 800 },
-    { suffix: "_b", width: 1024 },
   ]
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        const imgUrl: string = `${baseImgUrl}_b.jpg`
-        setImageSrc(imgUrl)
+    const debounce = (func: Function, delay: number) => {
+      let timeout: number | undefined = undefined
+      return (...args: any[]) => {
+        clearTimeout(timeout)
+        timeout = window.setTimeout(() => func.apply(this, args), delay)
       }
-    })
+    }
+
+    const observer = new IntersectionObserver(
+      debounce((entries: IntersectionObserverEntry[]) => {
+        if (entries[0].isIntersecting) {
+          const imgUrl: string = `${baseImgUrl}_n.jpg`
+          setImageSrc(imgUrl)
+        }
+      }, 100) // Debounce with 100ms delay
+    )
+
     const currentImageRef = imageRef.current
     if (currentImageRef) {
       observer.observe(currentImageRef)
     }
+
     return () => {
       if (currentImageRef) {
         observer.unobserve(currentImageRef)
@@ -49,9 +57,10 @@ const ImageCard: FC<IImageCard> = ({ data, onToggleFav, favourites }) => {
     .join(",\n")
 
   const sizes = `
-    (max-width: 600px) 480px,
-    (max-width: 1200px) 800px,
-    1200px
+    (min-width: 320px) 280px,
+    (min-width: 480px) 440px,
+    (min-width: 768px) 600px,
+    100vw
   `
 
   return (
