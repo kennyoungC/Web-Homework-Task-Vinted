@@ -10,7 +10,7 @@ interface IImageCard {
 }
 
 const ImageCard: FC<IImageCard> = ({ data, onToggleFav, favourites }) => {
-  const [imageSrc, setImageSrc] = useState("https://via.placeholder.com/300")
+  const [imageSrc, setImageSrc] = useState("https://placehold.co/600x400")
   const imageRef = useRef<HTMLImageElement | null>(null)
   const baseImgUrl = `https://live.staticflickr.com/${data.server}/${data.id}_${data.secret}`
   const isFav = favourites.includes(data.id)

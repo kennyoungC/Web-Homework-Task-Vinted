@@ -1,6 +1,6 @@
 import { FC } from "react"
 import "./App.scss"
-import Gallery from "./components/Gallery/Gallery"
+import Gallery from "./components/Gallery/Gallery.js"
 
 const App: FC = () => {
   return (

@@ -8,7 +8,7 @@ This project is a solution to the Vinted Web Task, which involves creating a res
 - TypeScript: For static typing
 - SCSS: For styling
 - Vite: For development and build tooling
-- jest: For testing
+- vitest: For testing
 
 ## Features
 
@@ -61,10 +61,11 @@ To run this project locally, follow these steps:
 
 ## Testing
 
-This project includes comprehensive tests to ensure its functionality. To run the tests, use the following command:
+This project includes basic tests to ensure its functionality. To run the tests, use the following command:
 
 ```
-npm run test
+npm run test or yarn run test
+and press q to quit
 ```
 
 ## Additional Notes

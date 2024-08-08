@@ -8,7 +8,6 @@ export interface IPhoto {
   ispublic: number
   isfriend: number
   isfamily: number
-  isFav?: boolean
 }
 
 export type FetchHookData = {

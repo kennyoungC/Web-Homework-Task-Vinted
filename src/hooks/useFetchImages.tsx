@@ -64,7 +64,7 @@ const useFetchImages = () => {
     dispatch({ type: "SET_LOADING", payload: true })
     dispatch({ type: "SET_ERROR", payload: false })
     try {
-      const photo: IPhoto[] = await fetchImagesFromAPI(page, 10)
+      const photo: IPhoto[] = await fetchImagesFromAPI(page, 20)
 
       if (photo.length === 0) {
         dispatch({ type: "SET_HAS_MORE", payload: false })
@@ -75,6 +75,7 @@ const useFetchImages = () => {
     } catch (error) {
       if (error) {
         dispatch({ type: "SET_ERROR", payload: true })
+        dispatch({ type: "SET_LOADING", payload: false })
         return
       }
     }
