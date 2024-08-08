@@ -1,30 +1,81 @@
-# React + TypeScript + Vite
+# Vinted Web Task - Kenneth Obi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a solution to the Vinted Web Task, which involves creating a responsive web application that retrieves data from an API, implements infinite scroll, allows users to favorite items.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React : For building the user interface
+- TypeScript: For static typing
+- SCSS: For styling
+- Vite: For development and build tooling
+- jest: For testing
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Infinite Scroll: Automatically loads more images as the user scrolls down.
+- Favouriting Images: Users can mark images as favourites. Favourites persist across page reloads.
+- Lazy Loading: Images are loaded only when they enter the viewport.
+- Responsive Design: Layout adjusts to different screen sizes (Desktop, Tablet, Phone).
+- Responsive Images: Higher quality images are loaded only when needed to save bandwidth
+- Hover State: Item hover state as per design requirements.
 
-- Configure the top-level `parserOptions` property like this:
+## Additional Feature by me
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- Total Favourite: This allows user to see the total numbers of their favourite item. On scroll, it sticks to the top of the page so users can see the total numbers of favourite item irrespective of where they are on the page
+
+## Getting Started
+
+To run this project locally, follow these steps:
+
+---
+
+1. Clone or download the repository or download:
+   git clone https://github.com/kennyoungC/Web-Homework-Task-Vinted.git
+   cd Web-Homework-Task-Vinted
+
+---
+
+---
+
+2. Install dependencies:
+   npm install or yarn install
+
+---
+
+---
+
+3. Set up environment variables:
+   npm install or yarn install
+   VITE_API_KEY=your_flickr_api_key
+
+---
+
+---
+
+4. Run the the application by startin the server
+   yarn run dev or npm run start
+
+---
+
+5. Open your browser and navigate to `http://localhost:5173` to view the application.
+
+## Testing
+
+This project includes comprehensive tests to ensure its functionality. To run the tests, use the following command:
+
+```
+npm run test
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Additional Notes
+
+- This project follows best practices for code organization and maintainability.
+- The use of TypeScript ensures type safety and improves code quality.
+- Styling is implemented using SCSS, providing flexibility and modularity.
+- The project utilizes Vite as the development environment for fast and efficient development.
+
+## Conclusion
+
+This project meets all the requirements of the Vinted Web Task. It showcases my expertise in React, TypeScript, SCSS, and API integration. The code is well-documented and tested for reliable functionality.
+
+If you have any questions or need further assistance, feel free to reach out.
