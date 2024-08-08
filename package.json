@@ -21,12 +21,13 @@
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.3.0",
     "@vitest/ui": "latest",
-    "jsdom": "^24.0.0",
-    "vite": "latest",
-    "vitest": "latest",
-    "sass-embedded": "^1.77.8",
     "eslint": "^9.8.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
-    "eslint-plugin-react-refresh": "^0.4.9"
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "jsdom": "^24.0.0",
+    "sass-embedded": "^1.77.8",
+    "typescript": "^5.5.4",
+    "vite": "latest",
+    "vitest": "latest"
   }
 }
