@@ -23,6 +23,7 @@ This project is a solution to the Vinted Web Task, which involves creating a res
 
 - Total Favourite: This allows user to see the total numbers of their favourite item. On scroll, it sticks to the top of the page so users can see the total numbers of favourite item irrespective of where they are on the page
 - Loader: This is display whenever the data from the API is still being Fetched
+- Truncate Long Text: Some of the titles coming from the API were super long and causeing distortion in the images. To fix that, I used text ellipsis to shorten the titles and added '...' at the end to show there's more to the text.
 
 ## Getting Started
 
