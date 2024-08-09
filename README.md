@@ -22,6 +22,7 @@ This project is a solution to the Vinted Web Task, which involves creating a res
 ## Additional Feature by me
 
 - Total Favourite: This allows user to see the total numbers of their favourite item. On scroll, it sticks to the top of the page so users can see the total numbers of favourite item irrespective of where they are on the page
+- Loader: This is display whenever the data from the API is still being Fetched
 
 ## Getting Started
 
