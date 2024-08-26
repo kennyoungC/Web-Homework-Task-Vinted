@@ -31,7 +31,7 @@ To run this project locally, follow these steps:
 
 ---
 
-1. Clone or download the repository or download:
+1. Clone or download the repository:
    git clone https://github.com/kennyoungC/Web-Homework-Task-Vinted.git
    cd Web-Homework-Task-Vinted
 
@@ -47,7 +47,6 @@ To run this project locally, follow these steps:
 ---
 
 3. Set up environment variables:
-   npm install or yarn install
    VITE_API_KEY=your_flickr_api_key
 
 ---
@@ -81,4 +80,4 @@ and press q to quit
 
 This project meets all the requirements of the Vinted Web Task. It showcases my expertise in React, TypeScript, SCSS, and API integration. The code is well-documented and tested for reliable functionality.
 
-If you have any questions or need further assistance, feel free to reach out.
+If you have any questions or need further assistance, feel free to reach out @ obikenneth913@gmail.com.
