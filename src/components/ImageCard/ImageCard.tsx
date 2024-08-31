@@ -69,7 +69,6 @@ const ImageCard: FC<IImageCard> = ({ data, onToggleFav, favourites }) => {
         alt={data.title || "sampleImg"}
         ref={imageRef}
         src={imageSrc}
-        loading="lazy"
         srcSet={srcSet}
         sizes={sizes}
       />

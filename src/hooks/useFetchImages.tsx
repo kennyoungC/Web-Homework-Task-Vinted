@@ -42,8 +42,14 @@ const reducer = (state: State, action: Action): State => {
   }
 }
 
+// type state = {
+//   loading: boolean
+//   error: boolean
+// } |
+
 const useFetchImages = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
+
   const observer = useRef<IntersectionObserver | null>(null)
   const { page, loading, hasMore, error } = state
 

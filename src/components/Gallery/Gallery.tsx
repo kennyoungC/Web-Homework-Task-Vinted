@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import useFetchImages from "../../hooks/useFetchImages"
 import { FetchHookData, IPhoto } from "../../types"
 import ImageCard from "../ImageCard/ImageCard"
-import "./Gallary.scss"
+import "./Gallery.scss"
 import Loading from "../Loading/Loading"
 
 const Gallery: FC = () => {
@@ -21,7 +21,7 @@ const Gallery: FC = () => {
     localStorage.setItem("favorites", JSON.stringify(favorites))
   }, [favorites])
 
-  const handleFavourites = (id: string) => {
+  const handleFavourites = useCallback((id: string) => {
     setFavorites((prev) => {
       if (prev.includes(id)) {
         return prev.filter((favId) => favId !== id)
@@ -29,7 +29,7 @@ const Gallery: FC = () => {
         return [...prev, id]
       }
     })
-  }
+  }, [])
 
   return (
     <div className="gallery">

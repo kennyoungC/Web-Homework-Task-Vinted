@@ -4,10 +4,10 @@ This project is a solution to the Vinted Web Task, which involves creating a res
 
 ## Technologies Used
 
-- React : For building the user interface
-- TypeScript: For static typing
-- SCSS: For styling
 - Vite: For development and build tooling
+- SCSS: For styling
+- TypeScript: For static typing
+- React : For building the user interface
 - vitest: For testing
 
 ## Features
